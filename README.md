@@ -105,4 +105,45 @@ gcc -Wall -O2 -o test sigint.c
 Получить сигнал `SIGINT` можно, нажав `ctrl-c`. Для получения сигнала `SIGTERM` следует использовать команду `kill -15 pid` (параметр `-15` опциональный), где `pid` выводится программой раз в секунду.
 
 # Отладчик gdb
-приготовить тестовое приложение обращающееся по нулевому указателю. собрать приложение с отладочной информацией. научиться получать coredump (man ulimit). с помощью gdb получить 'stack trace' из coredump-а (команда bt).
+
+Обратимся по нулевому указателю в `null.c`. Соберем файл:
+```
+gcc -g null.c -o test
+```
+
+Просмотреть все виды ограничений:
+```
+ulimit -a
+```
+
+Нас интересует `core file size`, поэтому уточним команду:
+```
+ulimit -c
+```
+
+Изменим жесткое ограничение:
+```
+ulimit -c unlimited
+```
+Аналогично мягкое:
+```
+ulimit -S -c unlimited 
+```
+
+Запустив файл, мы получим segfault:
+```
+[1]    55172 segmentation fault (core dumped)  ./test
+```
+
+В исходном репозитории создастся coredump-файл `core`. С помощью `gdb` можно прочитать `core dump`:
+```
+gdb test core
+```
+![gdb with coredump](./gdb_coredump.png "gdb")
+
+С помощью gdb получим 'stack trace' из coredump-а (команда bt):
+```
+gdb test
+```
+
+![bt with coredump](./bt_coredump.png "bt")
