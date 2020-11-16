@@ -139,11 +139,12 @@ ulimit -S -c unlimited
 ```
 gdb test core
 ```
-![gdb with coredump](./gdb_coredump.png "gdb")
+![gdb with coredump](./screenshots/gdb_coredump.png "gdb")
 
 С помощью gdb получим 'stack trace' из coredump-а (команда bt):
 ```
 gdb test
 ```
 
-![bt with coredump](./bt_coredump.png "bt")
+
+![bt with coredump](./screenshots/bt_coredump.png "bt")
