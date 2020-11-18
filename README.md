@@ -148,3 +148,61 @@ gdb test
 
 
 ![bt with coredump](./screenshots/bt_coredump.png "bt")
+
+# Символьный файл устройства (character special file)
+
+To create a device type file, use the mknod command; the command receives the type (block or character), major and minor of the device (mknod name type major minor). Thus, if you want to create a character device named mycdev with the major 42 and minor 0, use the command:
+```
+mknod /dev/mycdev c 42 0
+```
+To create the block device with the name mybdev with the major 240 and minor 0 the command will be:
+```
+mknod /dev/mybdev b 240 0
+```
+
+Add character device to the module. Implement 'open', 'read', 'write', 'release' functionality. Device shall operate in 'echo' mode. Data passed to 'write' shall be returned from 'read'. Establish meaningful limits to prevent device 'abuse'.
+
+Verify operation executing the following commands in two terminals:
+    cat > /dev/echo
+    cat < /dev/echo
+Text typed in first terminal shall appear in second terminal.
+
+Try to transfer big binary file through 'echo' device. Verify that received copy matches sent file.
+# Новая задача
+
+https://www.kernel.org/
+git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+https://git.kernel.org/pub/scm/linux/kernel/git/tglx/history.git
+https://bootlin.com/doc/training/linux-kernel/linux-kernel-slides.pdf
+linux/Documentation/process/coding-style.rst
+https://lwn.net/Kernel/LDD3/
+
+
+Implement multi-threaded application consisting of several 'producer' and several 'consumer' threads. Number of produces and consumers shall be passed via command line arguments. Use random numbers as produced and consumed 'data'. Develop necessary data structures to store produced 'data' waiting for consumption. Don't forget about synchronization. Use 'busy loop' for random time to simulate delay in producers and consumers.
+
+
+
+Study 'unix sockets' (man unix, man -a socket). Develop 'client' and 'server' applications communicating via 'unix socket'. 'server' shall operate in 'echo' mode. Data received by 'server' shall be returned to the same 'client'. 'client' shall read data from 'stdio' and write it to 'socket'. 'client' shall read data from 'socket' and write it to 'stdout'. Several simultaneously connected clients shall be supported.
+
+In different terminals launch server and couple of clients. Text typed in client shall be printed in the same terminal. Do some processing of the text on server side to make obvious that text printed on client side was actually received from server.
+
+Acronis is international company. English is official language in Acronis. All documentation and comments in source code must be written in English.
+
+
+
+https://github.com/acroteam/lib-proxy
+https://github.com/acroteam/tracker
+присоединяйтесь. присылайте пулл реквесты.
+задача каждого добиться принятия своего пулл реквеста и раскритиковать пулл реквесты коллег, чтобы они не были приняты. ;-)
+
+
+
+Install 'debug kernel'. Do something 'prohibited' in your kernel module (for example try to allocate memory holding spinlock locked). Check if 'debug kernel' detects and reports your violation.
+https://github.com/acroteam/tracker/pull/1
+
+
+
+https://github.com/acroteam/Checker
+есть некий ядерный модуль (например, https://github.com/acroteam/tracker)
+при любом изменении исходников нужно пересобрать модуль на множестве дистрибутивов и множестве версий ядра.
