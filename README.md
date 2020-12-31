@@ -145,8 +145,6 @@ gdb test core
 ```
 gdb test
 ```
-
-
 ![bt with coredump](./screenshots/bt_coredump.png "bt")
 
 # Символьный файл устройства (character special file)
@@ -154,10 +152,6 @@ gdb test
 To create a device type file, use the mknod command; the command receives the type (block or character), major and minor of the device (mknod name type major minor). Thus, if you want to create a character device named mycdev with the major 42 and minor 0, use the command:
 ```
 mknod /dev/mycdev c 42 0
-```
-To create the block device with the name mybdev with the major 240 and minor 0 the command will be:
-```
-mknod /dev/mybdev b 240 0
 ```
 
 Add character device to the module. Implement 'open', 'read', 'write', 'release' functionality. Device shall operate in 'echo' mode. Data passed to 'write' shall be returned from 'read'. Establish meaningful limits to prevent device 'abuse'.
@@ -168,6 +162,9 @@ Verify operation executing the following commands in two terminals:
 Text typed in first terminal shall appear in second terminal.
 
 Try to transfer big binary file through 'echo' device. Verify that received copy matches sent file.
+
+Чтение воводится бесконечное число раз
+Вход только одному процессу позволен
 # Новая задача
 
 https://www.kernel.org/
