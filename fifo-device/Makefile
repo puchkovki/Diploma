@@ -1,4 +1,4 @@
-obj-m+=fifodev.o
+obj-m+=cdev.o
  
 all:
 	make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) modules
@@ -10,7 +10,7 @@ clean:
 test:
 	# Clear the kernel log without echo
 	sudo dmesg --clear
-	sudo insmod fifodev.ko
-	lsmod | grep "fifodev"
-	sudo rmmod fifodev
+	sudo insmod cdev.ko
+	lsmod | grep "cdev"
+	sudo rmmod cdev
 	dmesg
